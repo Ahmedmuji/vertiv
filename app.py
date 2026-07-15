@@ -1,5 +1,12 @@
 from __future__ import annotations
 
+try:
+    __import__('pysqlite3')
+    import sys
+    sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+except ImportError:
+    pass
+
 import json
 import mimetypes
 import os
