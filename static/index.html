@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Search and chat with the local Vertiv product knowledge base.">
+  <title>Vertiv Knowledge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Vertiv Knowledge home">
+        <span class="brand-mark" aria-hidden="true">V</span>
+        <span><strong>Vertiv</strong><small>Knowledge</small></span>
+      </a>
+      <div class="status-cluster">
+        <span class="status-dot" id="statusDot"></span>
+        <span id="statusLabel">Connecting</span>
+        <button class="button button-secondary" id="reindexButton" type="button">Refresh index</button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <aside class="sidebar">
+        <div class="sidebar-heading">
+          <p class="eyebrow">Workspace</p>
+          <h2>Product library</h2>
+        </div>
+        <button class="new-chat" id="newChatButton" type="button">
+          <span aria-hidden="true">＋</span> New conversation
+        </button>
+        <div class="library-card">
+          <div class="metric"><strong id="documentCount">—</strong><span>indexed docs</span></div>
+          <div class="metric"><strong id="chunkCount">—</strong><span>searchable passages</span></div>
+        </div>
+        <label class="filter-label" for="categorySelect">Search within</label>
+        <select id="categorySelect">
+          <option value="">All product categories</option>
+        </select>
+        <div class="category-list" id="categoryList"></div>
+        <div class="privacy-note">
+          <span aria-hidden="true">⌂</span>
+          <div><strong>Local knowledge base</strong><p>Documents and the search index remain on this machine.</p></div>
+        </div>
+      </aside>
+
+      <section class="chat-panel">
+        <div class="chat-scroll" id="chatScroll">
+          <div class="hero" id="hero">
+            <div class="hero-icon" aria-hidden="true">V</div>
+            <p class="eyebrow">Premier Systems knowledge assistant</p>
+            <h1>Ask your Vertiv<br>product library.</h1>
+            <p class="hero-copy">Find specifications, compare models, locate manuals, and trace every answer back to the original document.</p>
+            <div class="suggestions" id="suggestions">
+              <button type="button" data-question="Compare the cooling capacity and applications of Liebert CRV4 models."><span>Compare products</span><small>CRV4 capacity and applications</small></button>
+              <button type="button" data-question="What are the key specifications for Vertiv VE racks?"><span>Find specifications</span><small>VE rack technical details</small></button>
+              <button type="button" data-question="How does the Liebert XDU070 work and where is it used?"><span>Explain a solution</span><small>XDU070 operation and use cases</small></button>
+              <button type="button" data-question="Which document contains SmartAisle 2 configuration requirements?"><span>Locate a document</span><small>SmartAisle configuration</small></button>
+            </div>
+          </div>
+          <div class="messages" id="messages" aria-live="polite"></div>
+        </div>
+
+        <div class="composer-wrap">
+          <form class="composer" id="chatForm">
+            <textarea id="questionInput" rows="1" maxlength="4000" placeholder="Ask about a product, model, specification, or document…" aria-label="Your question"></textarea>
+            <button class="send-button" id="sendButton" type="submit" aria-label="Send question">↑</button>
+          </form>
+          <p class="composer-hint" id="modeHint">Answers are grounded in your indexed documents. Verify critical specifications in the cited source.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>

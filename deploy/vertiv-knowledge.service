@@ -1,0 +1,16 @@
+[Unit]
+Description=Vertiv Knowledge RAG App
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/vertiv-knowledge
+EnvironmentFile=/opt/vertiv-knowledge/.env
+ExecStart=/opt/vertiv-knowledge/.venv/bin/python app.py
+Restart=always
+RestartSec=5
+User=vertivbot
+Group=vertivbot
+
+[Install]
+WantedBy=multi-user.target
